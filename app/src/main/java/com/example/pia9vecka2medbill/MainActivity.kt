@@ -2,7 +2,9 @@ package com.example.pia9vecka2medbill
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
@@ -35,13 +37,45 @@ class MainActivity : AppCompatActivity() {
 
         var resetButton = findViewById<Button>(R.id.resetButton)
         resetButton.setOnClickListener {
-            counterNumber = 0
+            resetCounting()
+        }
+
+        var setNumberButton = findViewById<Button>(R.id.setNumberButton)
+        setNumberButton.setOnClickListener {
+            var numberEditText = findViewById<EditText>(R.id.numberEditText)
+            var enteredText = numberEditText.text.toString()
+            Log.d("PIA9Debug", enteredText)
+
+            /*
+            var enteredNumber =  enteredText.toIntOrNull()!!
+            if (enteredNumber != null)
+            {
+                counterNumber = enteredNumber
+            }
+            */
+
+            enteredText.toIntOrNull()?.let { enteredNumber ->
+                counterNumber = enteredNumber
+            }
             counterTextView.text = counterNumber.toString()
+
+            numberEditText.setText("")
 
         }
 
+        var goOtherButton = findViewById<Button>(R.id.goOtherButton)
+        goOtherButton.setOnClickListener {
+
+            Log.d("PIADEBUG", "let's go")
+        }
 
 
+    }
 
+    fun resetCounting()
+    {
+        counterNumber = 0
+        var counterTextView: TextView = findViewById<TextView>(R.id.countertextView)
+        counterTextView.text = counterNumber.toString()
     }
 }
