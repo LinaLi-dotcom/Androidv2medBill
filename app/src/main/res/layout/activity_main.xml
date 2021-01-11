@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="10dp"
     android:scrollbarSize="30dp"
     tools:context=".MainActivity">
 
@@ -11,7 +12,6 @@
         android:id="@+id/goOtherButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="440dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="32dp"
@@ -19,8 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resetButton" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/setNumberButton"
@@ -54,7 +53,7 @@
         android:layout_marginTop="24dp"
         android:text="Minus"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countertextView" />
+        app:layout_constraintTop_toBottomOf="@+id/errorTextView" />
 
     <TextView
         android:id="@+id/countertextView"
@@ -76,7 +75,7 @@
         android:layout_marginRight="24dp"
         android:text="Plus"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countertextView" />
+        app:layout_constraintTop_toBottomOf="@+id/errorTextView" />
 
     <EditText
         android:id="@+id/numberEditText"
@@ -93,4 +92,22 @@
         app:layout_constraintEnd_toStartOf="@+id/setNumberButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resetButton" />
+
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:background="#FA0A0A"
+        android:paddingLeft="10dp"
+        android:shadowColor="#FFEB3B"
+        android:text="Error"
+        android:textColor="#F6F3F3"
+        android:textSize="30sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countertextView"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

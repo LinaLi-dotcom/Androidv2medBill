@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -22,19 +23,12 @@ class MainActivity : AppCompatActivity() {
 
         var plusButton = findViewById<Button>(R.id.plusButton)
         plusButton.setOnClickListener {
-            counterNumber += 1
-            counterTextView.text = counterNumber.toString()
+            calculateNumber("plus")
         }
 
         var minusButton = findViewById<Button>(R.id.minusButton)
         minusButton.setOnClickListener {
-            counterNumber -= 1
-
-            if (counterNumber < 0)
-            {
-                counterNumber = 0
-            }
-            counterTextView.text = counterNumber.toString() }
+            calculateNumber("minus") }
 
         var resetButton = findViewById<Button>(R.id.resetButton)
         resetButton.setOnClickListener {
@@ -47,21 +41,12 @@ class MainActivity : AppCompatActivity() {
             var enteredText = numberEditText.text.toString()
             Log.d("PIA9DEBUG", enteredText)
 
-            /*
-            var enteredNumber =  enteredText.toIntOrNull()!!
-            if (enteredNumber != null)
-            {
+            makeNumber(enteredText)?.let { enteredNumber ->
                 counterNumber = enteredNumber
             }
-            */
 
-            enteredText.toIntOrNull()?.let { enteredNumber ->
-                counterNumber = enteredNumber
-            }
             counterTextView.text = counterNumber.toString()
-
             numberEditText.setText("")
-
         }
 
         var goOtherButton = findViewById<Button>(R.id.goOtherButton)
@@ -73,6 +58,42 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("counter", counterNumber)
             startActivity(intent)
         }
+    }
+
+    fun calculateNumber(calMode : String)
+    {
+        if (calMode == "plus")
+        {
+           counterNumber += 1
+        }
+        if (calMode == "minus")
+        {
+            counterNumber -= 1
+        }
+
+        if (counterNumber < 0)
+        {
+            counterNumber = 0
+        }
+
+        var counterTextView = findViewById<TextView>(R.id.countertextView)
+        counterTextView.text = counterNumber.toString()
+    }
+
+
+    fun makeNumber(numbertext : String) : Int?
+    {
+        var theNumber = numbertext.toIntOrNull()
+
+        if (theNumber == null)
+        {
+          findViewById<TextView>(R.id.errorTextView). visibility = View.VISIBLE
+        } else {
+            var errorTextView = findViewById<TextView>(R.id.errorTextView)
+            errorTextView.visibility = View.GONE
+        }
+
+        return theNumber
     }
 
     fun resetCounting()
