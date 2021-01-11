@@ -1,5 +1,6 @@
 package com.example.pia9vecka2medbill
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         setNumberButton.setOnClickListener {
             var numberEditText = findViewById<EditText>(R.id.numberEditText)
             var enteredText = numberEditText.text.toString()
-            Log.d("PIA9Debug", enteredText)
+            Log.d("PIA9DEBUG", enteredText)
 
             /*
             var enteredNumber =  enteredText.toIntOrNull()!!
@@ -66,10 +67,12 @@ class MainActivity : AppCompatActivity() {
         var goOtherButton = findViewById<Button>(R.id.goOtherButton)
         goOtherButton.setOnClickListener {
 
-            Log.d("PIADEBUG", "let's go")
+            Log.d("PIA9DEBUG", "let's go")
+
+            var intent = Intent(this, OtherActivity::class.java)
+            intent.putExtra("counter", counterNumber)
+            startActivity(intent)
         }
-
-
     }
 
     fun resetCounting()
